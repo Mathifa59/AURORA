@@ -1,0 +1,223 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================================
+// MULTI-TENANT CORE
+// ============================================================
+
+model Business {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  timezone    String   @default("America/Mexico_City")
+  locale      String   @default("es-MX")
+  currency    String   @default("MXN")
+  phone       String?
+  email       String?
+  address     String?
+  brandColor  String   @default("#6366f1")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users         User[]
+  services      Service[]
+  reservations  Reservation[]
+  availability  AvailabilityRule[]
+  conversations Conversation[]
+  agentLogs     AgentLog[]
+  customers     Customer[]
+
+  @@index([slug])
+}
+
+model User {
+  id         String   @id @default(cuid())
+  authId     String   @unique // supabase auth uid
+  email      String   @unique
+  name       String?
+  role       UserRole @default(STAFF)
+  businessId String
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([businessId])
+  @@index([authId])
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+}
+
+// ============================================================
+// CATALOG
+// ============================================================
+
+model Service {
+  id              String   @id @default(cuid())
+  businessId      String
+  business        Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  name            String
+  description     String?
+  durationMinutes Int      @default(30)
+  capacity        Int      @default(1) // simultaneous bookings allowed
+  priceCents      Int      @default(0)
+  active          Boolean  @default(true)
+  color           String   @default("#6366f1")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  reservations Reservation[]
+
+  @@index([businessId])
+  @@index([businessId, active])
+}
+
+// ============================================================
+// AVAILABILITY
+// ============================================================
+
+// Recurring weekly opening hours.
+// dayOfWeek: 0=Sunday ... 6=Saturday
+model AvailabilityRule {
+  id         String   @id @default(cuid())
+  businessId String
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  dayOfWeek  Int
+  startTime  String // "09:00"
+  endTime    String // "18:00"
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@index([businessId, dayOfWeek])
+}
+
+// ============================================================
+// CUSTOMERS & RESERVATIONS
+// ============================================================
+
+model Customer {
+  id         String   @id @default(cuid())
+  businessId String
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  name       String
+  phone      String?
+  email      String?
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  reservations  Reservation[]
+  conversations Conversation[]
+
+  @@unique([businessId, phone])
+  @@index([businessId])
+}
+
+model Reservation {
+  id          String            @id @default(cuid())
+  businessId  String
+  business    Business          @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  serviceId   String
+  service     Service           @relation(fields: [serviceId], references: [id])
+  customerId  String?
+  customer    Customer?         @relation(fields: [customerId], references: [id])
+  customerName  String
+  customerPhone String?
+  customerEmail String?
+  startsAt    DateTime
+  endsAt      DateTime
+  partySize   Int               @default(1)
+  status      ReservationStatus @default(PENDING)
+  notes       String?
+  source      ReservationSource @default(WEB)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([businessId, startsAt])
+  @@index([businessId, status])
+  @@index([serviceId, startsAt])
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  ATTENDED
+  NO_SHOW
+}
+
+enum ReservationSource {
+  WEB
+  AI_AGENT
+  WHATSAPP
+  ADMIN
+}
+
+// ============================================================
+// AI AGENT
+// ============================================================
+
+model Conversation {
+  id         String   @id @default(cuid())
+  businessId String
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  channel    String   @default("web") // web | whatsapp
+  sessionId  String   @unique // anonymous session token
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  messages Message[]
+
+  @@index([businessId])
+  @@index([sessionId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           MessageRole
+  content        String
+  toolCalls      Json?
+  toolResults    Json?
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId, createdAt])
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+  TOOL
+}
+
+model AgentLog {
+  id         String   @id @default(cuid())
+  businessId String
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  sessionId  String?
+  tool       String
+  input      Json
+  output     Json?
+  status     String   @default("ok") // ok | error
+  error      String?
+  durationMs Int?
+  createdAt  DateTime @default(now())
+
+  @@index([businessId, createdAt])
+  @@index([tool])
+}

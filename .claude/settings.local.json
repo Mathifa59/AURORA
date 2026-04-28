@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__6b1b1df7-437f-484c-bdc6-43e67bb47d7a__list_projects",
+      "mcp__6b1b1df7-437f-484c-bdc6-43e67bb47d7a__list_organizations",
+      "mcp__6b1b1df7-437f-484c-bdc6-43e67bb47d7a__get_project",
+      "Bash(npm -v)",
+      "Bash(npm install *)",
+      "Bash(npx prisma *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"Landing: %{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"Admin dashboard: %{http_code}\\\\n\" http://localhost:3000/admin/dashboard)",
+      "Bash(curl -s -o /dev/null -w \"Calendar: %{http_code}\\\\n\" http://localhost:3000/admin/calendar)",
+      "Bash(curl -s -o /dev/null -w \"Reservations: %{http_code}\\\\n\" http://localhost:3000/admin/reservations)",
+      "Bash(curl -s -o /dev/null -w \"Services API: %{http_code}\\\\n\" http://localhost:3000/api/services)",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Hola, ¿qué servicios tienen?\",\"sessionId\":\"test-session-12345678\"}')",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Hola, ¿qué servicios ofrecen?\",\"sessionId\":\"test-gemini-12345678\"}' --max-time 60)",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Quiero reservar una cena para 2 personas mañana en la noche\",\"sessionId\":\"test-gemini-12345678\"}' --max-time 60)",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Las 8:30 PM, a nombre de Mathias Vasquez, mi teléfono es 5215512349999\",\"sessionId\":\"test-gemini-12345678\"}' --max-time 60)",
+      "Bash(curl -s http://localhost:3000/api/reservations)",
+      "Bash(python -c \"import sys, json; data = json.load\\(sys.stdin\\); print\\(f'Total reservas: {len\\(data[\\\\\"reservations\\\\\"]\\)}\\\\\\\\n'\\); [print\\(f'  - {r[\\\\\"customerName\\\\\"]} | {r[\\\\\"service\\\\\"][\\\\\"name\\\\\"]} | {r[\\\\\"startsAt\\\\\"]} | {r[\\\\\"status\\\\\"]} | {r[\\\\\"source\\\\\"]}'\\) for r in data['reservations']]\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Reserva una cena para 2 mañana 29 de abril a las 8:30 PM. Soy Test User, teléfono 5215500001111\",\"sessionId\":\"tz-test-87654321\"}' --max-time 90)",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Reserva una cena para 2 el 1 de mayo a las 8:30 PM. Soy Test TZ, teléfono 5215500009999\",\"sessionId\":\"tz-test-final-001\"}' --max-time 90)"
+    ]
+  }
+}
