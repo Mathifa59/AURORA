@@ -3,6 +3,8 @@ import { deleteService, updateService } from "@/server/services/service";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 const Body = z.object({
   name: z.string().optional(),
   description: z.string().optional(),

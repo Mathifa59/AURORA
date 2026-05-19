@@ -2,6 +2,8 @@ import { getCurrentBusiness } from "@/lib/tenant";
 import { runAgentTurn } from "@/server/ai/agent";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 /**
  * WhatsApp Cloud API webhook — preparado pero opcional.
  * - GET: verification handshake (`hub.challenge`).

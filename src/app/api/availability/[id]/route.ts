@@ -3,6 +3,8 @@ import { getCurrentBusiness } from "@/lib/tenant";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 const Body = z.object({
   startTime: z.string().regex(/^\d{2}:\d{2}$/).optional(),
   endTime: z.string().regex(/^\d{2}:\d{2}$/).optional(),

@@ -3,6 +3,8 @@ import { createService, listServices } from "@/server/services/service";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   const business = await getCurrentBusiness();
   const onlyActive = new URL(req.url).searchParams.get("active") === "true";

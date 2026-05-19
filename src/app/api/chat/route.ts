@@ -3,6 +3,8 @@ import { runAgentTurn } from "@/server/ai/agent";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 const Body = z.object({
   message: z.string().min(1).max(2000),
   sessionId: z.string().min(8).max(128),

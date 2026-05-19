@@ -9,6 +9,8 @@ import { ReservationStatus } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(_req: NextRequest, ctx: { params: { id: string } }) {
   const business = await getCurrentBusiness();
   const r = await getReservation({ businessId: business.id, id: ctx.params.id });
