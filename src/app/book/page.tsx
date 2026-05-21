@@ -10,14 +10,14 @@ export default async function BookPage() {
 
   return (
     <div className="animate-fade-in">
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-semibold tracking-tight">
+      <div className="mb-6 text-center sm:mb-10">
+        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           Reserva en{" "}
-          <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
             {business.name}
           </span>
         </h1>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-sm text-muted-foreground sm:text-base">
           Elige tu servicio, selecciona fecha y hora, y confirma en segundos.
         </p>
       </div>

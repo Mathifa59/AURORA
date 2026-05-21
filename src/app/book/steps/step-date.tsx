@@ -27,7 +27,6 @@ function getDaysInMonth(d: Date) {
   return new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
 }
 
-// Monday-start offset
 function firstDayOffset(d: Date) {
   const day = new Date(d.getFullYear(), d.getMonth(), 1).getDay();
   return day === 0 ? 6 : day - 1;
@@ -44,7 +43,12 @@ export function StepDate({ onPick, loading }: Props) {
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 90);
 
+  const isPrevDisabled =
+    month.getFullYear() === today.getFullYear() &&
+    month.getMonth() === today.getMonth();
+
   function prevMonth() {
+    if (isPrevDisabled) return;
     setMonth((m) => new Date(m.getFullYear(), m.getMonth() - 1, 1));
   }
   function nextMonth() {
@@ -62,34 +66,52 @@ export function StepDate({ onPick, loading }: Props) {
   return (
     <div>
       <h2 className="text-xl font-semibold">¿Qué día te viene bien?</h2>
-      <p className="mt-1 text-sm text-muted-foreground">Selecciona una fecha disponible.</p>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Selecciona una fecha disponible.
+      </p>
 
-      <div className="mt-6 rounded-2xl border border-border bg-card p-5 max-w-sm">
-        {/* Month navigation */}
-        <div className="flex items-center justify-between mb-4">
-          <button onClick={prevMonth} className="btn-ghost h-8 w-8 p-0">
+      {/* Calendario — full width en móvil, max-sm en escritorio */}
+      <div className="mt-6 w-full rounded-2xl border border-border bg-card p-4 sm:max-w-sm sm:p-5">
+
+        {/* Navegación de mes */}
+        <div className="mb-4 flex items-center justify-between">
+          <button
+            onClick={prevMonth}
+            disabled={isPrevDisabled}
+            className="btn-ghost h-9 w-9 p-0 disabled:opacity-30"
+            aria-label="Mes anterior"
+          >
             <ChevronLeft className="h-4 w-4" />
           </button>
           <span className="text-sm font-semibold capitalize">
             {MONTHS_ES[month.getMonth()]} {month.getFullYear()}
           </span>
-          <button onClick={nextMonth} className="btn-ghost h-8 w-8 p-0">
+          <button
+            onClick={nextMonth}
+            className="btn-ghost h-9 w-9 p-0"
+            aria-label="Mes siguiente"
+          >
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
 
-        {/* Day headers */}
-        <div className="grid grid-cols-7 mb-2">
+        {/* Cabecera días */}
+        <div className="mb-1 grid grid-cols-7">
           {DAYS_ES.map((d) => (
-            <div key={d} className="text-center text-[10px] font-medium text-muted-foreground py-1">
+            <div
+              key={d}
+              className="py-1 text-center text-[10px] font-semibold uppercase tracking-wide text-muted-foreground"
+            >
               {d}
             </div>
           ))}
         </div>
 
-        {/* Calendar grid */}
-        <div className="grid grid-cols-7 gap-1">
-          {Array.from({ length: offset }).map((_, i) => <div key={`e-${i}`} />)}
+        {/* Grid de días */}
+        <div className="grid grid-cols-7 gap-0.5">
+          {Array.from({ length: offset }).map((_, i) => (
+            <div key={`e-${i}`} />
+          ))}
           {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
             const d = new Date(month.getFullYear(), month.getMonth(), day);
             const iso = isoDate(d);
@@ -98,17 +120,26 @@ export function StepDate({ onPick, loading }: Props) {
             const isDisabled = isPast || isFuture;
             const isSelected = selected === iso;
             const isToday = iso === isoDate(today);
+
             return (
               <button
                 key={day}
                 onClick={() => pick(day)}
                 disabled={isDisabled || loading}
+                aria-label={iso}
                 className={cn(
-                  "h-8 w-full rounded-lg text-sm transition-all",
-                  isSelected && "bg-primary text-primary-foreground font-semibold",
-                  !isSelected && isToday && "border border-primary text-primary font-semibold",
-                  !isSelected && !isDisabled && "hover:bg-accent",
-                  isDisabled && "opacity-30 cursor-not-allowed"
+                  "aspect-square w-full rounded-lg text-sm font-medium transition-all",
+                  "min-h-[2.25rem]", // garantiza área táctil mínima de 36px
+                  isSelected &&
+                    "bg-primary text-primary-foreground shadow-sm",
+                  !isSelected &&
+                    isToday &&
+                    "border-2 border-primary text-primary",
+                  !isSelected &&
+                    !isDisabled &&
+                    !isToday &&
+                    "hover:bg-accent text-foreground",
+                  isDisabled && "cursor-not-allowed text-muted-foreground/40"
                 )}
               >
                 {day}
@@ -119,8 +150,9 @@ export function StepDate({ onPick, loading }: Props) {
       </div>
 
       {loading && (
-        <p className="mt-4 text-sm text-muted-foreground animate-pulse">
-          Buscando horarios disponibles...
+        <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+          <span className="h-3 w-3 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+          Buscando horarios disponibles…
         </p>
       )}
     </div>

@@ -11,8 +11,8 @@ const experiences = [
     capacity: "2 personas",
     price: null,
     color: "#6366f1",
-    bg: "from-indigo-500/10 to-violet-500/5",
     badge: "Más popular",
+    emoji: "🕯️",
   },
   {
     name: "Mesa para 4",
@@ -23,8 +23,8 @@ const experiences = [
     capacity: "4 personas",
     price: null,
     color: "#8b5cf6",
-    bg: "from-violet-500/10 to-purple-500/5",
     badge: null,
+    emoji: "🥂",
   },
   {
     name: "Brunch dominical",
@@ -35,8 +35,8 @@ const experiences = [
     capacity: "Hasta 12",
     price: 650,
     color: "#ec4899",
-    bg: "from-pink-500/10 to-rose-500/5",
     badge: "Fin de semana",
+    emoji: "🥞",
   },
   {
     name: "Degustación del chef",
@@ -47,36 +47,36 @@ const experiences = [
     capacity: "2 personas",
     price: 1800,
     color: "#f59e0b",
-    bg: "from-amber-500/10 to-orange-500/5",
     badge: "Exclusivo",
+    emoji: "⭐",
   },
 ];
 
 export function RestaurantMenu() {
   return (
-    <section id="experiencias" className="bg-white px-6 py-24">
+    <section id="experiencias" className="bg-white px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
 
         {/* Header */}
-        <div className="mx-auto mb-16 max-w-2xl text-center">
-          <p className="mb-3 text-xs font-semibold tracking-[0.3em] text-amber-600 uppercase">
+        <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-16">
+          <p className="mb-2 text-xs font-semibold tracking-[0.3em] text-amber-600 uppercase sm:mb-3">
             Experiencias
           </p>
-          <h2 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-stone-900 sm:text-5xl">
             Elige tu mesa
           </h2>
-          <p className="mt-4 text-lg text-stone-500">
+          <p className="mt-3 text-base text-stone-500 sm:mt-4 sm:text-lg">
             Cada reserva es una experiencia diseñada. Selecciona la que mejor
             se adapte a tu ocasión.
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Cards — 1 col móvil, 2 col tablet, 4 col desktop */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {experiences.map((exp) => (
             <div
               key={exp.name}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-200/60"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-200/60 active:scale-[0.99]"
             >
               {/* Badge */}
               {exp.badge && (
@@ -88,28 +88,29 @@ export function RestaurantMenu() {
                 </div>
               )}
 
-              {/* Color top bar */}
+              {/* Barra de color superior */}
               <div
-                className={`h-1.5 w-full bg-gradient-to-r ${exp.bg}`}
-                style={{ background: `linear-gradient(90deg, ${exp.color}40, ${exp.color}10)` }}
+                className="h-1.5 w-full"
+                style={{
+                  background: `linear-gradient(90deg, ${exp.color}50, ${exp.color}15)`,
+                }}
               />
 
-              <div className="flex flex-1 flex-col p-6">
-                {/* Icon */}
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                {/* Emoji icon */}
                 <div
-                  className="flex h-12 w-12 items-center justify-center rounded-xl text-white"
-                  style={{ backgroundColor: exp.color + "20" }}
+                  className="flex h-11 w-11 items-center justify-center rounded-xl text-xl"
+                  style={{ backgroundColor: exp.color + "18" }}
                 >
-                  <span className="text-xl" style={{ color: exp.color }}>
-                    {exp.name.includes("2") ? "🕯️" :
-                     exp.name.includes("4") ? "🥂" :
-                     exp.name.includes("Brunch") ? "🥞" : "⭐"}
-                  </span>
+                  {exp.emoji}
                 </div>
 
-                {/* Text */}
+                {/* Texto */}
                 <div className="mt-4 flex-1">
-                  <p className="text-xs font-medium tracking-wide" style={{ color: exp.color }}>
+                  <p
+                    className="text-xs font-semibold tracking-wide uppercase"
+                    style={{ color: exp.color }}
+                  >
                     {exp.tagline}
                   </p>
                   <h3 className="mt-1 text-lg font-bold text-stone-900">{exp.name}</h3>
@@ -118,14 +119,14 @@ export function RestaurantMenu() {
                   </p>
                 </div>
 
-                {/* Meta */}
-                <div className="mt-5 flex items-center gap-4 border-t border-stone-100 pt-4 text-xs text-stone-400">
+                {/* Meta info */}
+                <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-stone-100 pt-4 text-xs text-stone-400">
                   <span className="flex items-center gap-1">
-                    <Clock className="h-3.5 w-3.5" />
+                    <Clock className="h-3.5 w-3.5 shrink-0" />
                     {exp.duration} min
                   </span>
                   <span className="flex items-center gap-1">
-                    <Users className="h-3.5 w-3.5" />
+                    <Users className="h-3.5 w-3.5 shrink-0" />
                     {exp.capacity}
                   </span>
                   {exp.price && (
@@ -139,11 +140,11 @@ export function RestaurantMenu() {
           ))}
         </div>
 
-        {/* CTA bajo las cards */}
-        <div className="mt-12 text-center">
+        {/* CTA — full width en móvil */}
+        <div className="mt-10 flex justify-center sm:mt-12">
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 rounded-full bg-stone-900 px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all hover:bg-stone-700 hover:scale-105 active:scale-95"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-stone-900 px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all hover:bg-stone-700 hover:scale-105 active:scale-95 sm:w-auto"
           >
             Ver disponibilidad y reservar
             <ArrowRight className="h-4 w-4" />

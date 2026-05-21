@@ -11,14 +11,13 @@ const NAV = [
 export function RestaurantFooter() {
   return (
     <footer className="bg-stone-950">
-      {/* Línea decorativa superior */}
       <div className="h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
 
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
 
-          {/* Brand */}
-          <div className="sm:col-span-1">
+          {/* ── Brand ────────────────────────────────── */}
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex flex-col leading-none">
               <span className="text-xl font-bold tracking-widest text-white uppercase">
                 Bistro
@@ -27,17 +26,17 @@ export function RestaurantFooter() {
                 Aurora
               </span>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-stone-500">
-              Cocina de autor en el corazón de la Ciudad de México. Una
-              experiencia gastronómica diseñada para recordarse.
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-stone-500">
+              Cocina de autor en el corazón de la Ciudad de México.
+              Una experiencia gastronómica diseñada para recordarse.
             </p>
-            <div className="mt-6 flex items-center gap-1 text-xs text-stone-600">
+            <div className="mt-4 flex items-center gap-2 text-xs text-stone-600">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               <span>Abierto hoy · Hasta las 23:00</span>
             </div>
           </div>
 
-          {/* Navegación */}
+          {/* ── Navegación ───────────────────────────── */}
           <div>
             <h4 className="mb-4 text-xs font-semibold tracking-[0.2em] text-stone-400 uppercase">
               Navegar
@@ -56,33 +55,35 @@ export function RestaurantFooter() {
             </ul>
           </div>
 
-          {/* Contacto */}
+          {/* ── Contacto ─────────────────────────────── */}
           <div>
             <h4 className="mb-4 text-xs font-semibold tracking-[0.2em] text-stone-400 uppercase">
               Contacto
             </h4>
             <ul className="space-y-2.5 text-sm text-stone-500">
               <li>
-                <a href="tel:+525555555555" className="hover:text-amber-400 transition-colors">
+                <a href="tel:+525555555555" className="transition-colors hover:text-amber-400">
                   +52 55 5555 5555
                 </a>
               </li>
               <li>
-                <a href="mailto:hola@bistroaurora.mx" className="hover:text-amber-400 transition-colors">
+                <a
+                  href="mailto:hola@bistroaurora.mx"
+                  className="break-all transition-colors hover:text-amber-400"
+                >
                   hola@bistroaurora.mx
                 </a>
               </li>
-              <li className="text-stone-600">
+              <li className="text-stone-600 leading-relaxed">
                 Av. Paseo de la Reforma 123<br />
                 Col. Juárez, CDMX
               </li>
             </ul>
 
-            {/* Admin link discreto */}
-            <div className="mt-6 border-t border-stone-800 pt-4">
+            <div className="mt-5 border-t border-stone-800 pt-4">
               <Link
                 href="/login"
-                className="text-xs text-stone-700 hover:text-stone-500 transition-colors"
+                className="text-xs text-stone-700 transition-colors hover:text-stone-500"
               >
                 Acceso administración →
               </Link>
@@ -91,7 +92,7 @@ export function RestaurantFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-stone-800 pt-8 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center gap-2 border-t border-stone-800 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-xs text-stone-700">
             © {new Date().getFullYear()} Bistro Aurora · Todos los derechos reservados
           </p>

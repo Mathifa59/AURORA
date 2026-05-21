@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function RestaurantHero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950 px-6 text-center">
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950 px-4 text-center sm:px-6">
 
       {/* Fondo: gradiente cálido tipo cena con velas */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(245,158,11,0.15),transparent)]" />
@@ -21,64 +21,67 @@ export function RestaurantHero() {
       />
 
       {/* Contenido */}
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex w-full flex-col items-center">
+
         {/* Pill superior */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-medium tracking-widest text-amber-400 uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-          Abierto hoy · 13:00 – 23:00
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs font-medium tracking-wider text-amber-400 uppercase sm:mb-8 sm:px-4 sm:tracking-widest">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400 animate-pulse" />
+          <span>Abierto hoy · 13:00 – 23:00</span>
         </div>
 
-        {/* Nombre */}
-        <h1 className="text-balance text-6xl font-bold tracking-tight text-white sm:text-7xl md:text-8xl">
+        {/* Nombre — mobile: 52px, tablet: 72px, desktop: 96px */}
+        <h1 className="text-balance text-[3.25rem] font-bold leading-[1.05] tracking-tight text-white sm:text-7xl md:text-8xl">
           Bistro{" "}
-          <span
-            className="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent"
-          >
+          <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">
             Aurora
           </span>
         </h1>
 
-        {/* Separador ornamental */}
-        <div className="my-6 flex items-center gap-3 text-amber-600/60">
-          <div className="h-px w-16 bg-current" />
-          <span className="text-sm tracking-[0.5em] uppercase">Ciudad de México</span>
-          <div className="h-px w-16 bg-current" />
+        {/* Separador ornamental — oculto en pantallas muy pequeñas */}
+        <div className="my-5 hidden items-center gap-3 text-amber-600/60 sm:flex">
+          <div className="h-px w-12 bg-current" />
+          <span className="text-xs tracking-[0.4em] uppercase">Ciudad de México</span>
+          <div className="h-px w-12 bg-current" />
         </div>
+        {/* Versión móvil más compacta */}
+        <p className="mt-3 text-xs tracking-[0.3em] text-amber-600/60 uppercase sm:hidden">
+          Ciudad de México
+        </p>
 
         {/* Tagline */}
-        <p className="mx-auto max-w-xl text-balance text-lg font-light leading-relaxed text-stone-300">
+        <p className="mx-auto mt-4 max-w-sm text-balance text-base font-light leading-relaxed text-stone-300 sm:max-w-xl sm:mt-6 sm:text-lg">
           Una experiencia gastronómica donde la cocina de autor se encuentra
           con los sabores más profundos de México.
         </p>
 
-        {/* CTAs */}
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+        {/* CTAs — apilados en móvil, lado a lado en sm+ */}
+        <div className="mt-8 flex w-full flex-col items-stretch gap-3 px-2 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:px-0">
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 text-base font-semibold text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:bg-amber-400 hover:shadow-amber-400/30 hover:scale-105 active:scale-95"
+            className="flex items-center justify-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 text-base font-semibold text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
           >
             Reservar mesa
             <ArrowRight className="h-4 w-4" />
           </Link>
           <OpenChatButton
-            label="Preguntarle al asistente IA"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-base font-medium text-white backdrop-blur transition-all hover:bg-white/10"
+            label="Hablar con el asistente"
+            className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-base font-medium text-white backdrop-blur transition-all hover:bg-white/10 active:scale-95"
           />
         </div>
 
-        {/* Hint chat */}
-        <p className="mt-5 text-xs text-stone-500">
+        {/* Hint */}
+        <p className="mt-4 text-xs text-stone-500 sm:mt-5">
           ¿Tienes dudas? El asistente responde al instante — día y noche.
         </p>
       </div>
 
-      {/* Degradado inferior para transición suave */}
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white to-transparent" />
+      {/* Degradado inferior */}
+      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white to-transparent sm:h-32" />
 
       {/* Flecha de scroll */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-stone-500 animate-bounce">
-        <span className="text-xs tracking-widest uppercase">Descubrir</span>
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-stone-500 animate-bounce sm:bottom-10">
+        <span className="text-[10px] tracking-widest uppercase">Descubrir</span>
+        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
         </svg>
       </div>

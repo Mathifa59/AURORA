@@ -35,18 +35,19 @@ export function StepSlot({ slots, date, serviceName, onPick }: Props) {
         {serviceName} · {dateLabel}
       </p>
 
-      <div className="mt-6 grid grid-cols-3 gap-2 sm:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         {slots.map((slot) => (
           <button
             key={slot.startsAt}
             onClick={() => onPick(slot)}
             className={cn(
               "flex items-center justify-center gap-1.5 rounded-xl border border-border",
-              "py-3 text-sm font-medium transition-all",
+              "py-3.5 text-sm font-medium transition-all",
+              "min-h-[3rem]", // mínimo 48px de altura para touch
               "hover:border-primary hover:bg-primary/5 hover:text-primary active:scale-95"
             )}
           >
-            <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+            <Clock className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
             {slot.label}
           </button>
         ))}

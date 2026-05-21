@@ -209,8 +209,8 @@ function ReservationCard({
   return (
     <div className={`card p-5 space-y-4 ${isPast ? "opacity-70" : ""}`}>
       {/* Header */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="flex items-center gap-3 min-w-0">
           <div
             className="h-10 w-10 rounded-lg shrink-0"
             style={{ backgroundColor: r.service.color + "33" }}
@@ -222,8 +222,8 @@ function ReservationCard({
               <Calendar className="h-5 w-5" />
             </div>
           </div>
-          <div>
-            <p className="font-semibold text-sm">{r.service.name}</p>
+          <div className="min-w-0">
+            <p className="font-semibold text-sm truncate">{r.service.name}</p>
             <p className="text-xs text-muted-foreground">
               {formatMoney(r.service.priceCents, "MXN", "es-MX")}
               {" · "}
@@ -231,7 +231,7 @@ function ReservationCard({
             </p>
           </div>
         </div>
-        <span className={`badge ring-1 ${STATUS_STYLE[r.status]}`}>
+        <span className={`badge ring-1 shrink-0 ${STATUS_STYLE[r.status]}`}>
           {r.status === "CONFIRMED" && <CheckCircle2 className="h-3 w-3 mr-1" />}
           {r.status === "CANCELLED" && <XCircle className="h-3 w-3 mr-1" />}
           {STATUS_LABEL[r.status]}
@@ -239,13 +239,13 @@ function ReservationCard({
       </div>
 
       {/* Date & time */}
-      <div className="flex items-center gap-4 text-sm">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
         <div className="flex items-center gap-1.5 text-muted-foreground">
-          <Calendar className="h-3.5 w-3.5" />
+          <Calendar className="h-3.5 w-3.5 shrink-0" />
           {formatDate(new Date(r.startsAt), "es-MX")}
         </div>
         <div className="flex items-center gap-1.5 text-muted-foreground">
-          <Clock className="h-3.5 w-3.5" />
+          <Clock className="h-3.5 w-3.5 shrink-0" />
           {formatTime(new Date(r.startsAt))} – {formatTime(new Date(r.endsAt))}
         </div>
       </div>

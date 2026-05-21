@@ -35,7 +35,7 @@ export function BookWizard({ services, currency, locale }: Props) {
   return (
     <div className="w-full max-w-xl mx-auto">
       {/* Progress bar */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8">
         <div className="flex items-center gap-2 mb-3">
           {showBack && (
             <button onClick={back} className="btn-ghost h-8 w-8 p-0 -ml-1">
