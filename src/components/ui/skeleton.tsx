@@ -1,17 +1,24 @@
 import { cn } from "@/lib/utils";
 
+/* Base — usa el shimmer de globals.css */
 export function Skeleton({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-md bg-muted",
+        "rounded-md skeleton-shimmer",
         className
       )}
     />
   );
 }
 
-export function SkeletonText({ lines = 3, className }: { lines?: number; className?: string }) {
+export function SkeletonText({
+  lines = 3,
+  className,
+}: {
+  lines?: number;
+  className?: string;
+}) {
   return (
     <div className={cn("space-y-2", className)}>
       {Array.from({ length: lines }).map((_, i) => (
@@ -26,9 +33,9 @@ export function SkeletonText({ lines = 3, className }: { lines?: number; classNa
 
 export function SkeletonCard({ className }: { className?: string }) {
   return (
-    <div className={cn("card-elevated p-5 space-y-3", className)}>
+    <div className={cn("card p-5 space-y-3 overflow-hidden", className)}>
       <div className="flex items-center gap-3">
-        <Skeleton className="h-10 w-10 rounded-lg" />
+        <Skeleton className="h-10 w-10 rounded-lg shrink-0" />
         <div className="flex-1 space-y-2">
           <Skeleton className="h-4 w-1/2" />
           <Skeleton className="h-3 w-1/3" />
@@ -41,7 +48,7 @@ export function SkeletonCard({ className }: { className?: string }) {
 
 export function SkeletonStat() {
   return (
-    <div className="card-elevated p-5 space-y-3">
+    <div className="card p-5 space-y-3 overflow-hidden">
       <Skeleton className="h-9 w-9 rounded-lg" />
       <Skeleton className="h-3 w-20" />
       <Skeleton className="h-7 w-14" />
@@ -57,7 +64,7 @@ export function SkeletonRow() {
         <Skeleton className="h-4 w-40" />
         <Skeleton className="h-3 w-24" />
       </div>
-      <Skeleton className="h-6 w-20 rounded-md" />
+      <Skeleton className="h-6 w-20 rounded-full" />
       <Skeleton className="h-8 w-24 rounded-md" />
     </div>
   );

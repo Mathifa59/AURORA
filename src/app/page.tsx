@@ -51,19 +51,16 @@ function Nav() {
           <a href="#flow" className="text-muted-foreground hover:text-foreground transition-colors">
             Cómo funciona
           </a>
-          <Link
-            href="/admin/dashboard"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Panel admin
+          <Link href="/mis-reservas" className="text-muted-foreground hover:text-foreground transition-colors">
+            Mis reservas
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <Link href="/admin/dashboard" className="btn-ghost text-sm">
+          <Link href="/login" className="btn-ghost text-sm">
             Iniciar sesión
           </Link>
-          <Link href="/admin/dashboard" className="btn-primary text-sm">
-            Empezar
+          <Link href="/book" className="btn-primary text-sm">
+            Reservar ahora
           </Link>
         </div>
       </div>
@@ -93,8 +90,8 @@ function Hero() {
       </p>
 
       <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Link href="/admin/dashboard" className="btn-primary h-12 px-6 text-base">
-          Ver el panel
+        <Link href="/book" className="btn-primary h-12 px-6 text-base">
+          Reservar ahora
           <ArrowRight className="h-4 w-4" />
         </Link>
         <OpenChatButton />
@@ -311,14 +308,32 @@ function CTA() {
 function Footer() {
   return (
     <footer className="border-t border-border/40">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8 text-sm text-muted-foreground">
-        <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
-            <Sparkles className="h-3 w-3" />
+      <div className="mx-auto max-w-6xl px-6 py-8">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between text-sm text-muted-foreground">
+          {/* Brand */}
+          <div className="flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+              <Sparkles className="h-3 w-3" />
+            </div>
+            <span className="font-medium text-foreground">Reservalo</span>
           </div>
-          <span>Reservalo</span>
+
+          {/* Links */}
+          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/book" className="hover:text-foreground transition-colors">
+              Hacer reserva
+            </Link>
+            <Link href="/mis-reservas" className="hover:text-foreground transition-colors">
+              Mis reservas
+            </Link>
+            <Link href="/login" className="hover:text-foreground transition-colors">
+              Panel admin
+            </Link>
+          </nav>
+
+          {/* Copyright */}
+          <p>© {new Date().getFullYear()} — Next.js, Prisma y Gemini.</p>
         </div>
-        <p>© {new Date().getFullYear()} — Construido con Next.js, Prisma y OpenAI.</p>
       </div>
     </footer>
   );

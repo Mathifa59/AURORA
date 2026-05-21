@@ -57,8 +57,8 @@ export function BookWizard({ services, currency, locale }: Props) {
         </div>
       </div>
 
-      {/* Step content */}
-      <div className={cn("animate-slide-up")}>
+      {/* Step content — slide-in desde la derecha al avanzar */}
+      <div key={state.step} className="animate-slide-in-right">
         {state.step === "service" && (
           <StepService
             services={services}
