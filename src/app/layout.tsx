@@ -6,42 +6,43 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "Reservalo — Tu recepcionista virtual con IA",
-    template: "%s — Reservalo",
+    default: "Bistro Aurora — Cocina de autor · Ciudad de México",
+    template: "%s · Bistro Aurora",
   },
   description:
-    "Sistema de reservas con agente IA conversacional. Gestiona citas 24/7, sin sobrebooking y sin fricciones. Perfecto para restaurantes, salones, consultorios y más.",
+    "Restaurante de cocina de autor en el corazón de la Ciudad de México. Reserva tu mesa en línea — confirmación inmediata, sin cargos.",
   keywords: [
-    "reservas online",
-    "agente IA",
-    "sistema de citas",
-    "recepcionista virtual",
-    "reservas inteligentes",
+    "restaurante CDMX",
+    "cocina de autor",
+    "reservar mesa",
+    "Bistro Aurora",
+    "restaurante Reforma",
+    "cena romántica CDMX",
   ],
-  authors: [{ name: "Reservalo" }],
-  creator: "Reservalo",
+  authors: [{ name: "Bistro Aurora" }],
+  creator: "Bistro Aurora",
   openGraph: {
     type: "website",
     locale: "es_MX",
     url: APP_URL,
-    siteName: "Reservalo",
-    title: "Reservalo — Tu recepcionista virtual con IA",
+    siteName: "Bistro Aurora",
+    title: "Bistro Aurora — Cocina de autor · Ciudad de México",
     description:
-      "Agente IA que conversa con tus clientes, valida disponibilidad y agenda citas — sin sobrebooking, sin fricciones.",
+      "Una experiencia gastronómica donde la cocina de autor se encuentra con los sabores más profundos de México. Reserva tu mesa hoy.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Reservalo — Sistema de reservas con IA",
+        alt: "Bistro Aurora — Restaurante de cocina de autor en CDMX",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reservalo — Tu recepcionista virtual con IA",
+    title: "Bistro Aurora — Cocina de autor · Ciudad de México",
     description:
-      "Agente IA que conversa con tus clientes, valida disponibilidad y agenda citas — sin sobrebooking, sin fricciones.",
+      "Reserva tu mesa en Bistro Aurora. Confirmación inmediata, sin cargos.",
     images: ["/og-image.png"],
   },
   robots: {
