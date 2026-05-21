@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-indigo-50/60 via-background to-background p-8 text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-amber-50/60 via-background to-background p-8 text-center">
       {/* Número grande decorativo */}
-      <p className="text-[8rem] font-bold leading-none bg-gradient-to-br from-indigo-200 to-violet-200 bg-clip-text text-transparent select-none">
+      <p className="text-[8rem] font-bold leading-none bg-gradient-to-br from-amber-200 to-orange-200 bg-clip-text text-transparent select-none">
         404
       </p>
 

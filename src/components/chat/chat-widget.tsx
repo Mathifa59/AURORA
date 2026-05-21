@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from "react";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const SESSION_KEY = "reservalo:sessionId";
-const HISTORY_KEY = "reservalo:history";
+const SESSION_KEY = "bistro:sessionId";
+const HISTORY_KEY = "bistro:history";
 
 function genSessionId() {
   return `web-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
@@ -123,7 +123,7 @@ export function ChatWidget() {
         aria-label={open ? "Cerrar chat" : "Abrir chat"}
         className={cn(
           "fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all",
-          "bg-gradient-to-br from-indigo-500 to-violet-600 text-white",
+          "bg-gradient-to-br from-amber-500 to-orange-600 text-white",
           "hover:shadow-xl hover:scale-105 active:scale-95",
           open && "rotate-90"
         )}
@@ -146,7 +146,7 @@ export function ChatWidget() {
       >
         <div className="card-elevated overflow-hidden flex flex-col h-[600px] max-h-[calc(100vh-8rem)]">
           {/* Header */}
-          <div className="flex items-center justify-between gap-3 bg-gradient-to-br from-indigo-500 to-violet-600 px-5 py-4 text-white">
+          <div className="flex items-center justify-between gap-3 bg-gradient-to-br from-amber-500 to-orange-600 px-5 py-4 text-white">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur">
                 <Sparkles className="h-4 w-4" />

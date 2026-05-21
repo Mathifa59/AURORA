@@ -77,7 +77,7 @@ export function CustomersTable({ locale }: { locale: string }) {
                 <tr key={c.id} className="hover:bg-muted/20 transition-colors">
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-semibold text-xs shrink-0">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white font-semibold text-xs shrink-0">
                         {c.name.charAt(0).toUpperCase()}
                       </div>
                       <span className="font-medium">{c.name}</span>

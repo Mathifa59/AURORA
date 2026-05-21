@@ -2,7 +2,7 @@ import { getCurrentBusiness } from "@/lib/tenant";
 import { SettingsForm } from "./settings-form";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Ajustes — Reservalo" };
+export const metadata = { title: "Ajustes — Bistro Aurora" };
 
 export default async function SettingsPage() {
   const business = await getCurrentBusiness();

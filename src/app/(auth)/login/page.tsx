@@ -81,14 +81,14 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-fuchsia-50 p-6">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 p-6">
       <div className="card-elevated w-full max-w-md p-8 animate-slide-up">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 mb-8">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white">
             <Sparkles className="h-4 w-4" />
           </div>
-          <span className="font-semibold tracking-tight">Reservalo</span>
+          <span className="font-semibold tracking-tight">Bistro Aurora</span>
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-tight">Bienvenido</h1>

@@ -74,10 +74,10 @@ export function MobileSidebar({ open, onClose }: Props) {
       >
         <div className="flex h-14 items-center justify-between px-4 border-b border-border">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white">
               <Sparkles className="h-3.5 w-3.5" />
             </div>
-            <span className="font-semibold text-sm">Reservalo</span>
+            <span className="font-semibold text-sm">Bistro Aurora</span>
           </div>
           <button onClick={onClose} className="btn-ghost h-8 w-8 p-0" aria-label="Cerrar">
             <X className="h-4 w-4" />

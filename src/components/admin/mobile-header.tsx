@@ -12,7 +12,7 @@ export function MobileHeader({ businessName }: { businessName: string }) {
     <>
       <header className="flex h-14 items-center justify-between border-b border-border bg-background px-4 md:hidden">
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white">
             <Sparkles className="h-3.5 w-3.5" />
           </div>
           <span className="font-semibold text-sm">{businessName}</span>

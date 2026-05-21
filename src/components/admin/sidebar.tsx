@@ -44,10 +44,10 @@ export function Sidebar() {
     <aside className="hidden w-64 shrink-0 border-r border-border bg-muted/20 md:flex md:flex-col">
       {/* Logo */}
       <div className="flex h-16 items-center gap-2 border-b border-border px-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white">
           <Sparkles className="h-4 w-4" />
         </div>
-        <span className="font-semibold tracking-tight">Reservalo</span>
+        <span className="font-semibold tracking-tight">Bistro Aurora</span>
       </div>
 
       {/* Nav items */}

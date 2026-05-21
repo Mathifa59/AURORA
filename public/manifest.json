@@ -1,11 +1,11 @@
 {
-  "name": "Reservalo",
-  "short_name": "Reservalo",
-  "description": "Tu recepcionista virtual con IA. Reservas 24/7 sin fricciones.",
+  "name": "Bistro Aurora",
+  "short_name": "Bistro Aurora",
+  "description": "Reserva tu mesa en Bistro Aurora — cocina de autor en CDMX.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#6366f1",
+  "theme_color": "#f59e0b",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -23,14 +23,14 @@
   ],
   "shortcuts": [
     {
-      "name": "Reservar ahora",
+      "name": "Reservar mesa",
       "url": "/book",
       "description": "Haz una reserva rápida"
     },
     {
-      "name": "Panel admin",
-      "url": "/admin/dashboard",
-      "description": "Accede al panel de administración"
+      "name": "Mis reservas",
+      "url": "/mis-reservas",
+      "description": "Ver o cancelar tus reservas"
     }
   ]
 }
